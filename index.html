@@ -24,37 +24,20 @@
     /* ===== Banner Slider ===== */
 .slider {
   width: 100%;
-  height: 260px;
+  height: 240px;      /* 手机友好 */
   overflow: hidden;
-}
-
-.slides {
-  display: flex;
-  width: 300%;
-  height: 100%;
-  animation: slide 12s infinite;
+  background: #000;   /* 图片加载前的底色 */
 }
 
 .slide {
   width: 100%;
   height: 100%;
-  background-size: contain; /* 关键 */
+  background-image: url("banner1.jpg"); /* 只用这一张 */
+  background-size: contain;             /* 不裁字 */
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.slide1 { background-image: url("banner1.jpg"); }
-.slide2 { background-image: url("banner2.jpg"); }
-.slide3 { background-image: url("banner3.jpg"); }
-
-@keyframes slide {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(0); }
-  36% { transform: translateX(-100%); }
-  66% { transform: translateX(-100%); }
-  69% { transform: translateX(-200%); }
-  100% { transform: translateX(-200%); }
-}
 
 
     /* ===== Content ===== */
@@ -131,13 +114,10 @@
 <body>
 
   <!-- Banner -->
-  <div class="slider">
-    <div class="slides">
-      <div class="slide slide1"></div>
-      <div class="slide slide2"></div>
-      <div class="slide slide3"></div>
-    </div>
-  </div>
+ <div class="slider">
+  <div class="slide slide1"></div>
+</div>
+
 
   <!-- Links -->
   <div class="container">
