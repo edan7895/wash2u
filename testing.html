@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Wash2U Car Saloon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    /* ===== Banner Slider (稳定版) ===== */
+    .slider {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slides {
+      display: flex;
+      height: 100%;
+      animation: slide 15s infinite;
+    }
+
+    .slide {
+      min-width: 100%;              /* ✅ 关键：每一张占满一屏 */
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;     /* 不裁字 */
+    }
+
+    .slide1 { background-image: url("/banner1.jpg"); }
+    .slide2 { background-image: url("/banner2.jpg"); }
+    .slide3 { background-image: url("/banner3.jpg"); }
+
+    @keyframes slide {
+      0%, 28%   { transform: translateX(0); }
+      33%, 61%  { transform: translateX(-100%); }
+      66%, 100% { transform: translateX(-200%); }
+    }
+
+    /* ===== Content ===== */
+    .container {
+      padding: 30px 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    /* ===== Buttons ===== */
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: white;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 15px;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .icon {
+      font-size: 22px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .google { background: #4285F4; }
+    .facebook { background: #1877F2; }
+    .instagram {
+      background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
+    }
+    .tiktok { background: #000; }
+    .xiaohongshu { background: #ff2e2e; }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+      padding: 20px 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Banner -->
+  <div class="slider">
+    <div class="slides">
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+      <div class="slide slide3"></div>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="container">
+    <div class="title">Wash2U Car Saloon</div>
+    <div class="subtitle">Professional Car Wash & Detailing</div>
+
+    <a class="link-btn" href="https://atomicurl.com/pHD" target="_blank">
+      <div class="icon google"><i class="fa-brands fa-google"></i></div>
+      Google Review
+    </a>
+
+    <a class="link-btn" href="https://www.facebook.com/p/Wash2U-car-saloon-100078692595033/" target="_blank">
+      <div class="icon facebook"><i class="fa-brands fa-facebook-f"></i></div>
+      Facebook
+    </a>
+
+    <a class="link-btn" href="https://www.instagram.com/wash2u_car_saloon/" target="_blank">
+      <div class="icon instagram"><i class="fa-brands fa-instagram"></i></div>
+      Instagram
+    </a>
+
+    <a class="link-btn" href="https://www.tiktok.com/@wash2ucarsaloon" target="_blank">
+      <div class="icon tiktok"><i class="fa-brands fa-tiktok"></i></div>
+      TikTok
+    </a>
+
+    <a class="link-btn" href="https://xhslink.com/m/JVhLfFMumR" target="_blank">
+      <div class="icon xiaohongshu"><i class="fa-solid fa-book"></i></div>
+      小红书
+    </a>
+  </div>
+
+  <footer>
+    © 2026 Wash2U Car Saloon
+  </footer>
+
+</body>
+</html>
