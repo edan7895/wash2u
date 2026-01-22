@@ -5,7 +5,7 @@
   <title>Wash2U Car Saloon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font Awesome 图标 -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
@@ -21,24 +21,37 @@
       color: #333;
     }
 
-    /* ===== Banner Slider ===== */
-.slider {
-  width: 100%;
-  height: 240px;      /* 手机友好 */
-  overflow: hidden;
-  background: #000;   /* 图片加载前的底色 */
-}
+    /* ===== Banner Slider (稳定版) ===== */
+    .slider {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background: #000;
+    }
 
-.slide {
-  width: 100%;
-  height: 100%;
-  background-image: url("banner1.jpg"); /* 只用这一张 */
-  background-size: contain;             /* 不裁字 */
-  background-repeat: no-repeat;
-  background-position: center;
-}
+    .slides {
+      display: flex;
+      height: 100%;
+      animation: slide 15s infinite;
+    }
 
+    .slide {
+      min-width: 100%;              /* ✅ 关键：每一张占满一屏 */
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;     /* 不裁字 */
+    }
 
+    .slide1 { background-image: url("/banner1.jpg"); }
+    .slide2 { background-image: url("/banner2.jpg"); }
+    .slide3 { background-image: url("/banner3.jpg"); }
+
+    @keyframes slide {
+      0%, 28%   { transform: translateX(0); }
+      33%, 61%  { transform: translateX(-100%); }
+      66%, 100% { transform: translateX(-200%); }
+    }
 
     /* ===== Content ===== */
     .container {
@@ -114,10 +127,13 @@
 <body>
 
   <!-- Banner -->
- <div class="slider">
-  <div class="slide slide1"></div>
-</div>
-
+  <div class="slider">
+    <div class="slides">
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+      <div class="slide slide3"></div>
+    </div>
+  </div>
 
   <!-- Links -->
   <div class="container">
