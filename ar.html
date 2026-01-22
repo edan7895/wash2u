@@ -4,8 +4,14 @@
 <meta charset="UTF-8">
 <title>WASH2U AR Shine</title>
 
+<!-- A-Frame -->
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+<!-- AR.js -->
 <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+<!-- 粒子系统 -->
+<script src="https://unpkg.com/aframe-particle-system-component@1.0.0/dist/aframe-particle-system-component.min.js"></script>
 
 <style>
 body {
@@ -13,21 +19,36 @@ body {
   overflow: hidden;
   font-family: Arial, sans-serif;
 }
+#tapHint {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  opacity: 0.8;
+}
 </style>
 </head>
 
 <body>
 
+<div id="tapHint">🔊 Tap screen to enable sound</div>
+
 <a-scene
   embedded
-  vr-mode-ui="enabled: false"
+  vr-mode-ui="enabled:false"
   arjs="sourceType: webcam; debugUIEnabled: false;"
 >
 
 <!-- Camera -->
 <a-entity camera></a-entity>
 
-<!-- LOGO -->
+<!-- 🔊 Sounds -->
+<a-entity id="spraySound" sound="src: url(spray.mp3); volume: 0.8"></a-entity>
+<a-entity id="shineSound" sound="src: url(shine.mp3); volume: 0.6"></a-entity>
+
+<!-- ✨ Logo -->
 <a-image
   src="wash2u-logo.png"
   position="0 0.25 -1.8"
@@ -37,45 +58,46 @@ body {
   animation="property: scale; to: 1 1 1; dur: 800; easing: easeOutElastic"
 ></a-image>
 
-<!-- 💦 Spray（水雾） -->
-<a-text
-  value="💦 Spray"
-  position="0 0.8 -1.8"
-  width="2.5"
-  align="center"
-  color="#00CFFF"
-  opacity="0"
-  animation="property: opacity; to: 1; dur: 300; delay: 800"
-  animation__move="property: position; from: 0 1 -1.8; to: 0 0.6 -1.8; dur: 500; delay: 800"
-></a-text>
-
-<!-- 🫧 Foam（泡沫） -->
-<a-text
-  value="🫧 Foam"
-  position="0 0.45 -1.8"
-  width="2.5"
-  align="center"
-  color="#FFFFFF"
-  scale="0 0 0"
-  animation="property: scale; to: 1 1 1; dur: 400; delay: 1300"
-  animation__pulse="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 600; dir: alternate; loop: true; delay: 1700"
-></a-text>
-
-<!-- ✨ Shine -->
-<a-text
-  value="✨ SHINE ✨"
-  position="0 0.05 -1.8"
-  width="3"
-  align="center"
-  color="#FFD700"
-  scale="0 0 0"
-  animation="property: scale; to: 1 1 1; dur: 500; delay: 1900"
-  animation__flash="property: opacity; from: 0.6; to: 1; dur: 400; dir: alternate; loop: true; delay: 2400"
-></a-text>
-
-<!-- ⭐ Google Review Button -->
+<!-- ✨ Shine 光线扫过 -->
 <a-plane
-  position="0 -0.55 -1.8"
+  position="0 0.25 -1.79"
+  width="1.4"
+  height="0.9"
+  material="color: #ffffff; opacity: 0.0"
+  animation="property: material.opacity; from: 0; to: 0.6; dur: 300; delay: 2000"
+  animation__fade="property: material.opacity; to: 0; dur: 300; delay: 2300"
+></a-plane>
+
+<!-- 💧 水雾喷射 -->
+<a-entity
+  position="0 0.9 -1.8"
+  particle-system="
+    preset: dust;
+    particleCount: 800;
+    color: #8fdfff;
+    size: 0.04;
+    velocityValue: 0 -1.2 0;
+    velocitySpread: 0.3 0.5 0.3;
+    opacity: 0.8;
+  "
+></a-entity>
+
+<!-- 🫧 泡沫上升 -->
+<a-entity
+  position="0 -0.2 -1.8"
+  particle-system="
+    particleCount: 600;
+    color: #ffffff;
+    size: 0.05;
+    velocityValue: 0 0.4 0;
+    velocitySpread: 0.2 0.3 0.2;
+    opacity: 0.9;
+  "
+></a-entity>
+
+<!-- ⭐ Review Button -->
+<a-plane
+  position="0 -0.7 -1.8"
   width="1.9"
   height="0.45"
   color="#0A4DA2"
@@ -93,6 +115,20 @@ body {
 </a-plane>
 
 </a-scene>
+
+<script>
+let soundPlayed = false;
+document.body.addEventListener('click', () => {
+  if (!soundPlayed) {
+    document.querySelector('#spraySound').components.sound.playSound();
+    setTimeout(() => {
+      document.querySelector('#shineSound').components.sound.playSound();
+    }, 2000);
+    document.getElementById('tapHint').style.display = 'none';
+    soundPlayed = true;
+  }
+});
+</script>
 
 </body>
 </html>
